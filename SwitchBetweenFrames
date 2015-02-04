@@ -1,0 +1,40 @@
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.*;
+import org.openqa.selenium.WebDriver.*;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+
+public class SwitchFrames 
+{
+
+	        public static void main(String[] args) throws InterruptedException
+	        {
+	                WebDriver driver=new FirefoxDriver();
+	                driver.get("file:///E:/Programming%20Samples/HTML%20Samples/SwitchBetweenFrames.html");
+	                driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	                
+//	                driver.findElement(By.name("UserName1")).sendKeys("Hello");
+	                
+//	                Demonstration frames with index
+	                driver.switchTo().frame(0);
+	                WebElement ele=driver.findElement(By.name("UserName1"));
+	                ele.sendKeys("Hello");
+	                Thread.sleep(2000);
+	                
+//	                Demonstration frames with frame name
+	                driver.switchTo().defaultContent();
+	                driver.switchTo().frame("f2");
+	                ele=driver.findElement(By.name("UserName2"));
+	                ele.sendKeys("Uday");
+	                
+//	                Demonstration frames with WebElement
+	                driver.switchTo().defaultContent();
+	                WebElement frame3=driver.findElement(By.xpath("//frame[@id='f3']"));
+	                driver.switchTo().frame(frame3);
+	                ele=driver.findElement(By.name("UserName3"));
+	                ele.sendKeys("Kumar");
+	        }
+
+
+}
